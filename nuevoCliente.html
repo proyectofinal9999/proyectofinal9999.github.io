@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width,
+       initial-scale=1.0">
+  <title>
+    Nuevo Cliente
+  </title>
+  <script
+    src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script
+    src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script
+    src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="js/init.js">
+  </script>
+  <script type="module" src="cmp/navegacion.js">
+    </script>
+  <script type="module" src="cmp/footer.js">
+    </script>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+  <form name="forma">
+    <navegacion></navegacion>
+    <header>
+      <h1>Crear Nuevo Cliente</h1>
+
+      <style>
+        body {
+          background-image: url('telefonos.jpg');
+          background-repeat: no-repeat;
+          background-size: 100% 195%;
+        }
+      </style>
+
+      <div class="insesion" style="position: absolute;top: 800%;right: 40%;">
+        <a href="clientes.html"> Cancelar</a>
+        <button type="submit"> Guardar </button>
+      </div>
+    </header>
+
+    <p>
+      <label>
+        Nombre
+        <input name="nombre"
+          type="text" required>
+      </label>
+    </p>
+
+    <p>
+      <label>
+        Modelo de Celular
+        <input name="modcel"
+          type="text" required>
+      </label>
+    </p>
+
+    <p>
+      <label>
+        Teléfono
+        <input name="telefono"
+          type="text" required>
+      </label>
+    </p>
+
+    <p>
+      <label>
+        Tipo de Funda
+        <input name="tipfun"
+          type="text" required>
+      </label>
+    </p>
+
+    <p>
+      <label>
+        Fecha
+        <input name="fecha"
+          type="date" required>
+      </label>
+    </p>
+
+    <footer></footer>
+  </form>
+  <script type="module"
+    src="js/ctrlNuevoCliente.js">
+    </script>
+</body>
+</html>
