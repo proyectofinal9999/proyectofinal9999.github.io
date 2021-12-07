@@ -42,7 +42,7 @@ import {
     const formData =
       new FormData(forma);
     const id = getString(
-      formData, "cue").trim();
+      formData, "correoelec").trim();
     await guardaComprador(evt,
       formData, id);
   }

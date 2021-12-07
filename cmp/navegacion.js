@@ -28,7 +28,7 @@ import {
   
     /**
      * @param {import(
-        "../lib/tiposFire.js").User}
+        "../lib/datosFirebase.js").User}
         comp */
         async cambiaComprador(comp) {
           if (comp && comp.email) {

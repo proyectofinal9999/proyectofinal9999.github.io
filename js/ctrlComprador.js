@@ -8,7 +8,7 @@ import {
   } from "../lib/storage.js";
   import {
     muestraError
-  } from "../lib/errorConsol";
+  } from "../lib/errorConsol.js";
   import {
     muestraCompradores
   } from "./navegacion.js";
@@ -19,7 +19,7 @@ import {
     checksRoles,
     guardaComprador,
     selectClientes
-  } from "./compradores";
+  } from "./compradores.js";
   
   const params =
     new URL(location.href).

@@ -94,7 +94,7 @@ import {
       `<li>
         <a class="fila conImagen"
             href=
-      "usuario.html?${parámetros}">
+      "comprador.html?${parámetros}">
           <span class="marco">
             <img src="${img}"
               alt="Falta el Avatar">
