@@ -5,17 +5,7 @@
   <meta name="viewport"
     content="width=device-width,
        initial-scale=1.0">
-
   <title>Chat</title>
-
-  <style>
-    body {
-      background-image: url('telefonos.jpg');
-      background-repeat: no-repeat;
-      background-size: 100% 620%;
-    }
-  </style>
-
   <script
     src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js">
     </script>
@@ -27,32 +17,37 @@
     </script>
   <script src="js/init.js">
   </script>
-  <script type="module" src="cmp/navegacion.js">
+  <script type="module"
+    src="cmp/mi-nav.js">
     </script>
-  <script type="module" src="cmp/footer.js">
+  <script type="module"
+    src="cmp/mi-footer.js">
     </script>
-  <script type="module" src="cmp/progreso.js">
+  <script type="module"
+    src="cmp/mi-progreso.js">
     </script>
-  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet"
+    href="css/estilos.css">
 </head>
-
 <body>
-  <navegacion></navegacion>
+  <mi-nav></mi-nav>
   <form name="forma">
     <header>
       <h1>Chat</h1>
-      <div class="insesion">
-        <input name="texto" required placeholder="Escriba un mensaje">
-        <button style="position: absolute;top: 130%;right: 40%;">Enviar</button>
+      <div class="herramientas">
+        <input name="texto"
+          required
+          placeholder="Mensaje">
+        <button>Enviar</button>
       </div>
     </header>
     <ul id="lista" class="lista">
       <li>
-        <progreso>
-        </progreso>
+        <mi-progreso>
+        </mi-progreso>
       </li>
     </ul>
-    <footer></footer>
+    <mi-footer></mi-footer>
   </form>
   <script type="module"
     src="js/CtrlChat.js">

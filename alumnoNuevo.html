@@ -6,7 +6,7 @@
     content="width=device-width,
        initial-scale=1.0">
   <title>
-    Nuevo Cliente
+    Alumno Nuevo
   </title>
   <script
     src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
@@ -16,33 +16,36 @@
     src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
   <script src="js/init.js">
   </script>
-  <script type="module" src="cmp/navegacion.js">
+  <script type="module"
+    src="cmp/mi-nav.js">
     </script>
-  <script type="module" src="cmp/footer.js">
+  <script type="module"
+    src="cmp/mi-footer.js">
     </script>
-  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet"
+    href="css/estilos.css">
 </head>
-
 <body>
   <form name="forma">
-    <navegacion></navegacion>
+    <mi-nav></mi-nav>
     <header>
-      <h1>Crear Nuevo Cliente</h1>
-
-      <style>
-        body {
-          background-image: url('telefonos.jpg');
-          background-repeat: no-repeat;
-          background-size: 100% 195%;
-        }
-      </style>
-
-      <div class="insesion" style="position: absolute;top: 800%;right: 40%;">
-        <a href="clientes.html"> Cancelar</a>
-        <button type="submit"> Guardar </button>
+      <h1>Alumno Nuevo</h1>
+      <div class="herramientas">
+        <a
+          href="alumnos.html">
+          Cancelar</a>
+        <button type="submit">
+          Guardar
+        </button>
       </div>
     </header>
-
+    <p>
+      <label>
+        Matricula
+        <input name="matricula"
+          type="text" required>
+      </label>
+    </p>
     <p>
       <label>
         Nombre
@@ -50,15 +53,6 @@
           type="text" required>
       </label>
     </p>
-
-    <p>
-      <label>
-        Modelo de Celular
-        <input name="modcel"
-          type="text" required>
-      </label>
-    </p>
-
     <p>
       <label>
         Teléfono
@@ -66,15 +60,13 @@
           type="text" required>
       </label>
     </p>
-
     <p>
       <label>
-        Tipo de Funda
-        <input name="tipfun"
+        Grupo
+        <input name="grupo"
           type="text" required>
       </label>
     </p>
-
     <p>
       <label>
         Fecha
@@ -82,11 +74,11 @@
           type="date" required>
       </label>
     </p>
-
-    <footer></footer>
+    <mi-footer></mi-footer>
   </form>
   <script type="module"
-    src="js/ctrlNuevoCliente.js">
+    src="js/CtrlAlumnoNuevo.js">
     </script>
 </body>
 </html>
+

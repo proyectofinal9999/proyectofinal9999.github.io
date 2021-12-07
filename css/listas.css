@@ -18,7 +18,7 @@
 }
 
 a.fila:active {
-  background-color: mediumseagreen
+  background-color:
     var(--col-active);
 }
 

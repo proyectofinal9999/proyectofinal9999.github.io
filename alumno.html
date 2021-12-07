@@ -5,17 +5,7 @@
   <meta name="viewport"
     content="width=device-width,
        initial-scale=1.0">
-
-  <title>Información del Cliente</title>
-
-  <style>
-    body {
-      background-image: url('telefonos.jpg');
-      background-repeat: no-repeat;
-      background-size: 100% 195%;
-    }
-  </style>
-
+  <title>Alumno</title>
   <script
     src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js">
     </script>
@@ -27,44 +17,44 @@
     </script>
   <script src="js/init.js">
   </script>
-  <script type="module" src="cmp/navegacion.js">
+  <script type="module"
+    src="cmp/mi-nav.js">
     </script>
-  <script type="module" src="cmp/footer.js">
-  </script>
-  <script type="module" src="cmp/progreso.js"> 
-  </script>
-  <link rel="stylesheet" href="css/estilos.css">
-
+  <script type="module"
+    src="cmp/mi-footer.js">
+    </script>
+  <link rel="stylesheet"
+    href="css/estilos.css">
 </head>
 <body>
   <form name="forma">
-    <navegacion></navegacion>
+    <mi-nav></mi-nav>
     <header>
-      <h1>Información del Cliente</h1>
-      <div class="insesion" style="position: absolute;top: 780%;right: 40%;">
-        <a href="clientes.html"> Cancelar</a>
-        <button>Guardar</button> <button name="eliminar" type="button"> Eliminar </button>
+      <h1>Alumno</h1>
+      <div class="herramientas">
+        <a href="alumnos.html">
+          Cancelar</a>
+        <button>Guardar</button>
+        <button name="eliminar"
+          type="button">
+          Eliminar
+        </button>
       </div>
-      <progreso>
-      </progreso>
     </header>
     <p>
-
+      <label>
+        Matricula
+        <input name="matricula"
+          type="text" required>
+      </label>
+    </p>
+    <p>
       <label>
         Nombre
         <input name="nombre"
           type="text" required>
       </label>
     </p>
-
-    <p>
-      <label>
-        Modelo de Celular
-        <input name="modcel"
-          type="text" required>
-      </label>
-    </p>
-
     <p>
       <label>
         Teléfono
@@ -72,26 +62,24 @@
           type="text" required>
       </label>
     </p>
-
     <p>
       <label>
-        Tipo de funda
-        <input name="tipfun"
+        Grupo
+        <input name="grupo"
           type="text" required>
       </label>
     </p>
-
     <p>
       <label>
         Fecha
         <input name="fecha" type="date" required>
       </label>
     </p>
-
-    <footer></footer>
+    <mi-footer></mi-footer>
   </form>
   <script type="module"
-    src="js/ctrlCliente.js">
+    src="js/CtrlAlumno.js">
     </script>
 </body>
 </html>
+

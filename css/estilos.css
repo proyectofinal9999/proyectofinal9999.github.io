@@ -1,12 +1,12 @@
-@import "navegacion.css";
-@import "footer.css";
+@import "mi-nav.css";
+@import "mi-footer.css";
 @import "listas.css";
 
 :root {
-  font-family: monospace;
+  font-family: sans-serif;
   --col-active: #4646462c;
-  --color-header: #fcfdb1;
-  --colorNavegar: #fcfdb1;
+  --color-header: white;
+  --colorMiNav: white;
 }
 
 body {
@@ -23,7 +23,7 @@ header {
     var(--color-header);
 }
 
-.insesion {
+.herramientas {
   display: flex;
   flex-flow: wrap;
   align-items: center;
@@ -40,8 +40,6 @@ header input {
 
 h1 {
   margin: 0.5rem 0;
-  border: thick groove mediumseagreen;
-  border-radius: 60px;
 }
 
 figure img {
@@ -52,7 +50,7 @@ legend,
 p label {
   display: block;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 0.7rem;
 }
 
 p label>* {

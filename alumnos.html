@@ -5,17 +5,7 @@
   <meta name="viewport"
     content="width=device-width,
        initial-scale=1.0">
-
-  <title>Agregar Clientes</title>
-
-  <style>
-    body {
-      background-image: url('telefonos.jpg');
-      background-repeat: no-repeat;
-      background-size: 100% 900%;
-    }
-  </style>
-
+  <title>Alumnos</title>
   <script
     src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js">
     </script>
@@ -27,32 +17,38 @@
     </script>
   <script src="js/init.js">
   </script>
-  <script type="module" src="cmp/navegacion.js">
+  <script type="module"
+    src="cmp/mi-nav.js">
     </script>
-  <script type="module" src="cmp/footer.js">
+  <script type="module"
+    src="cmp/mi-footer.js">
     </script>
-  <script type="module" src="cmp/progreso.js">
+  <script type="module"
+    src="cmp/mi-progreso.js">
     </script>
-  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet"
+    href="css/estilos.css">
 </head>
-
 <body>
-  <navegacion></navegacion>
+  <mi-nav></mi-nav>
   <header>
-    <h1>Clientes</h1>
-    <div class="insesion" style="position: absolute;right: 50%;">
-      <a href="nuevoCliente.html"> Agregar</a>
+    <h1>Alumnos</h1>
+    <div class="herramientas">
+      <a
+        href="alumnoNuevo.html">
+        Agregar…</a>
     </div>
   </header>
   <ul id="lista" class="lista">
     <li>
-      <progreso>
-      </progreso>
+      <mi-progreso>
+      </mi-progreso>
     </li>
   </ul>
-  <footer></footer>
+  <mi-footer></mi-footer>
   <script type="module"
-    src="js/ctrlClientes.js">
+    src="js/CtrlAlumnos.js">
     </script>
 </body>
 </html>
+
