@@ -54,7 +54,7 @@ import {
         get();
       if (doc.exists) {
         const data = doc.data();
-        forma.cue.value = id || "";
+        forma.electronico.value = id || "";
         img.src =
           await urlStorage(id);
         selectClientes(
