@@ -1,6 +1,6 @@
 import {
   getAuth
-} from "../lib/bdfirebase.js";
+} from "../lib/bdFirebase.js";
 import {
   getString,
   muestraError
