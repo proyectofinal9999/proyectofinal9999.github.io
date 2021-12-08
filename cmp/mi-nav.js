@@ -46,8 +46,10 @@ class Nav extends HTMLElement {
         "Administrador")) {
         html += /* html */
           `<li>
-            <a href=
-"clientes.html">Clientes</a>
+            <a href= "clientes.html">Clientes</a>
+          </li>
+          <li>
+            <a href= "generales.html">Generales</a>
           </li>`;
       }
       this.ul.innerHTML += html;
