@@ -35,6 +35,7 @@ class Nav extends HTMLElement {
       const roles =
         await cargaRoles(
           gen.email);
+          
      if (roles.has("Cliente")) {
         html += /* html */
           `<li>
