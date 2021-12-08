@@ -5,15 +5,13 @@
   <meta name="viewport"
     content="width=device-width,
        initial-scale=1.0">
-  <title>Alumno</title>
-  <script
-    src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js">
+
+  <title>Cliente</title>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js">
     </script>
-  <script
-    src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js">
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js">
     </script>
-  <script
-    src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js">
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js">
     </script>
   <script src="js/init.js">
   </script>
@@ -26,13 +24,14 @@
   <link rel="stylesheet"
     href="css/estilos.css">
 </head>
+
 <body>
   <form name="forma">
     <mi-nav></mi-nav>
     <header>
-      <h1>Alumno</h1>
-      <div class="herramientas">
-        <a href="alumnos.html">
+      <h1>Cliente</h1>
+      <div class="materiales">
+        <a href="clientes.html">
           Cancelar</a>
         <button>Guardar</button>
         <button name="eliminar"
@@ -43,15 +42,15 @@
     </header>
     <p>
       <label>
-        Matricula
-        <input name="matricula"
+        Nombre
+        <input name="nombre"
           type="text" required>
       </label>
     </p>
     <p>
       <label>
-        Nombre
-        <input name="nombre"
+        Modelo de Celular
+        <input name="modcel"
           type="text" required>
       </label>
     </p>
@@ -64,8 +63,8 @@
     </p>
     <p>
       <label>
-        Grupo
-        <input name="grupo"
+        Tipo de funda
+        <input name="tipo"
           type="text" required>
       </label>
     </p>
@@ -78,7 +77,7 @@
     <mi-footer></mi-footer>
   </form>
   <script type="module"
-    src="js/CtrlAlumno.js">
+    src="js/CtrlCliente.js">
     </script>
 </body>
 </html>

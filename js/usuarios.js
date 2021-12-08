@@ -1,50 +1,50 @@
 import {
   getFirestore
-} from "../lib/fabrica.js";
+} from "../lib/bdFirebase.js";
 import {
   subeStorage
 } from "../lib/storage.js";
 import {
   cod, getForánea, muestraError
-} from "../lib/util.js";
+} from "../lib/errorConsol.js";
 import {
-  muestraUsuarios
+  muestraGenerales
 } from "./navegacion.js";
 
-const SIN_ALUMNOS = /* html */
+const NO_CLIENTES = /* html */
   `<option value="">
-    -- Sin Alumnos --
+    Sin Clientes
   </option>`;
 
 const firestore = getFirestore();
 const daoRol = firestore.
   collection("Rol");
-const daoAlumno = firestore.
-  collection("Alumno");
-const daoUsuario = firestore.
-  collection("Usuario");
+const daoCliente = firestore.
+  collection("Cliente");
+const daoGeneral = firestore.
+  collection("General");
 
 /**
  * @param {
     HTMLSelectElement} select
  * @param {string} valor */
 export function
-  selectAlumnos(select,
+  selectClientes(select,
     valor) {
   valor = valor || "";
-  daoAlumno.
+  daoCliente.
     orderBy("nombre").
     onSnapshot(
       snap => {
-        let html = SIN_ALUMNOS;
+        let html = NO_CLIENTES;
         snap.forEach(doc =>
-          html += htmlAlumno(
+          html += htmlCliente(
             doc, valor));
         select.innerHTML = html;
       },
       e => {
         muestraError(e);
-        selectAlumnos(
+        selectClientes(
           select, valor);
       }
     );
@@ -52,17 +52,17 @@ export function
 
 /**
  * @param {
-  import("../lib/tiposFire.js").
+  import("../lib/datosFire.js").
   DocumentSnapshot} doc
  * @param {string} valor */
 function
-  htmlAlumno(doc, valor) {
+  htmlCliente(doc, valor) {
   const selected =
     doc.id === valor ?
       "selected" : "";
   /**
    * @type {import("./tipos.js").
-                  Alumno} */
+                  Cliente} */
   const data = doc.data();
   return (/* html */
     `<option
@@ -89,8 +89,8 @@ export function
       } else {
         html += /* html */
           `<li class="vacio">
-              -- No hay roles
-              registrados. --
+              No hay roles
+              registrados.
             </li>`;
       }
       elemento.innerHTML = html;
@@ -105,7 +105,7 @@ export function
 
 /**
  * @param {
-    import("../lib/tiposFire.js").
+    import("../lib/datosFire.js").
     DocumentSnapshot} doc
  * @param {Set<string>} set */
 export function
@@ -143,25 +143,25 @@ export function
  * @param {FormData} formData
  * @param {string} id  */
 export async function
-  guardaUsuario(evt, formData,
+  guardaGeneral(evt, formData,
     id) {
   try {
     evt.preventDefault();
-    const alumnoId =
+    const idCliente =
       getForánea(formData,
-        "alumnoId");
+        "idCliente");
     const rolIds =
       formData.getAll("rolIds");
-    await daoUsuario.
+    await daoGeneral.
       doc(id).
       set({
-        alumnoId,
+        idCliente,
         rolIds
       });
     const avatar =
       formData.get("avatar");
     await subeStorage(id, avatar);
-    muestraUsuarios();
+    muestraGenerales();
   } catch (e) {
     muestraError(e);
   }

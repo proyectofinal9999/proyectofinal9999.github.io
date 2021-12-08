@@ -4,20 +4,20 @@
  */
 
 /**
- * @typedef {Object} Alumno
+ * @typedef {Object} Cliente
  * @property {string} nombre
  */
 
 /**
- * @typedef {Object} Usuario
+ * @typedef {Object} General 
  * @property {string[]} rolIds
- * @property {string} alumnoId
+ * @property {string} idCliente
  */
 
 // @ts-nocheck
 /**
  * @typedef {Object} Mensaje
- * @property {string} usuarioId
+ * @property {string} idGeneral
  * @property {string} texto
  * @property {firebase.firestore.Timestamp} timestamp
  */

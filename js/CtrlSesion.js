@@ -1,12 +1,12 @@
 import {
   getAuth
-} from "../lib/fabrica.js";
+} from "../lib/bdFirebase.js";
 import {
   muestraError
-} from "../lib/util.js";
+} from "../lib/errorConsol.js";
 import {
-  iniciaSesión,
-  terminaSesión
+  sesionOn,
+  sesionOff
 } from "./seguridad.js";
 
 /** @type {HTMLFormElement} */
@@ -32,26 +32,26 @@ getAuth().onAuthStateChanged(
  * o manda a iniciar sesión en
  * caso de que no haya empezado.
  * @param {import(
-    "../lib/tiposFire").
-    User} usuario modelo con las
+    "../lib/datosFire").
+    User} general modelo con las
  *    características del usuario
  *    o null si no ha iniciado
  *    sesión. */
 async function
-  muestraSesión(usuario) {
-  if (usuario && usuario.email) {
-    // Usuario aceptado.
+  muestraSesión(general) {
+  if (general && general.email) {
+    // Usuario General aceptado.
     forma.email.value =
-      usuario.email || "";
+      general.email || "";
     forma.nombre.value =
-      usuario.displayName || "";
+      general.displayName || "";
     avatar.src =
-      usuario.photoURL || "";
+      general.photoURL || "";
     forma.terminarSesión.
       addEventListener(
-        "click", terminaSesión);
+        "click", sesionOff);
   } else {
     // No ha iniciado sesión.
-    iniciaSesión();
+    sesionOn();
   }
 }

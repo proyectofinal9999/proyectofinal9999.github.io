@@ -1,31 +1,31 @@
 import {
   getAuth,
   getFirestore
-} from "../lib/fabrica.js";
+} from "../lib/bdFirebase.js";
 import {
   getString,
   muestraError
-} from "../lib/util.js";
+} from "../lib/errorConsol.js";
 import {
-  muestraAlumnos
+  muestraClientes
 } from "./navegacion.js";
 import {
   tieneRol
 } from "./seguridad.js";
 
-const daoAlumno =
+const daoCliente =
   getFirestore().
-    collection("Alumno");
+    collection("Cliente");
 /** @type {HTMLFormElement} */
 const forma = document["forma"];
 getAuth().onAuthStateChanged(
   protege, muestraError);
 
 /** @param {import(
-    "../lib/tiposFire.js").User}
-    usuario */
-async function protege(usuario) {
-  if (tieneRol(usuario,
+    "../lib/datosFire.js").User}
+    general */
+async function protege(general) {
+  if (tieneRol(general,
     ["Administrador"])) {
     forma.addEventListener(
       "submit", guarda);
@@ -38,26 +38,25 @@ async function guarda(evt) {
     evt.preventDefault();
     const formData =
       new FormData(forma);
-    const matricula = getString(
-        formData, "matricula").trim();  
-    const nombre = getString(formData, "nombre").trim();
+    const nombre = getString(formData, "nombre").trim();  
+    const modcel = getString(formData, "modcel").trim();
     const telefono = getString(formData, "telefono").trim();
-    const grupo = getString(formData, "grupo").trim();
+    const tipo = getString(formData, "tipo").trim();
     const fecha = getString(formData, "fecha").trim();
     /**
      * @type {
         import("./tipos.js").
-                Alumno} */
+                Cliente} */
     const modelo = {
-      matricula,
       nombre,
+      modcel,
       telefono,
-      grupo,
+      tipo,
       fecha 
     };
-    await daoAlumno.
+    await daoCliente.
       add(modelo);
-    muestraAlumnos();
+    muestraClientes();
   } catch (e) {
     muestraError(e);
   }

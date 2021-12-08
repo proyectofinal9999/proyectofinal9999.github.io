@@ -1,21 +1,21 @@
 import {
   getAuth,
   getFirestore
-} from "../lib/fabrica.js";
+} from "../lib/bdFirebase.js";
 import {
   getString,
   muestraError
-} from "../lib/util.js";
+} from "../lib/errorConsol.js";
 import {
-  muestraAlumnos
+  muestraClientes
 } from "./navegacion.js";
 import {
   tieneRol
 } from "./seguridad.js";
 
-const daoAlumno =
+const daoCliente =
   getFirestore().
-    collection("Alumno");
+    collection("Cliente");
 const params =
   new URL(location.href).
     searchParams;
@@ -27,10 +27,10 @@ getAuth().onAuthStateChanged(
   protege, muestraError);
 
 /** @param {import(
-    "../lib/tiposFire.js").User}
-    usuario */
-async function protege(usuario) {
-  if (tieneRol(usuario,
+    "../lib/datosFire.js").User}
+    general */
+async function protege(general) {
+  if (tieneRol(general,
     ["Administrador"])) {
     busca();
   }
@@ -41,19 +41,19 @@ async function protege(usuario) {
 async function busca() {
   try {
     const doc =
-      await daoAlumno.
+      await daoCliente.
         doc(id).
         get();
     if (doc.exists) {
       /**
        * @type {
           import("./tipos.js").
-                  Alumno} */
+                  Cliente} */
       const data = doc.data();
-      forma.matricula.value = data.matricula;
-      forma.nombre.value = data.nombre || "";
+      forma.nombre.value = data.nombre;
+      forma.modcel.value = data.modcel || "";
       forma.telefono.value = data.telefono || "";
-      forma.grupo.value = data.grupo || "";
+      forma.tipo.value = data.tipo || "";
       forma.fecha.value = data.fecha || "";
       forma.addEventListener(
         "submit", guarda);
@@ -66,7 +66,7 @@ async function busca() {
     }
   } catch (e) {
     muestraError(e);
-    muestraAlumnos();
+    muestraClientes();
   }
 }
 
@@ -76,27 +76,26 @@ async function guarda(evt) {
     evt.preventDefault();
     const formData =
       new FormData(forma);
-    const matricula = getString(
-        formData, "matricula").trim();  
-    const nombre = getString(formData, "nombre").trim();
+    const nombre = getString(formData, "nombre").trim();  
+    const modcel = getString(formData, "modcel").trim();
     const telefono = getString(formData, "telefono").trim();
-    const grupo = getString(formData, "grupo").trim();
+    const tipo = getString(formData, "tipo").trim();
     const fecha = getString(formData, "fecha").trim();
     /**
      * @type {
         import("./tipos.js").
-                Alumno} */
+                Cliente} */
     const modelo = {
-      matricula, 
-      nombre,
+      nombre, 
+      modcel,
       telefono,
-      grupo,
+      tipo,
       fecha
     };
-    await daoAlumno.
+    await daoCliente.
       doc(id).
       set(modelo);
-    muestraAlumnos();
+    muestraClientes();
   } catch (e) {
     muestraError(e);
   }
@@ -106,10 +105,10 @@ async function elimina() {
   try {
     if (confirm("Confirmar la " +
       "eliminación")) {
-      await daoAlumno.
+      await daoCliente.
         doc(id).
         delete();
-      muestraAlumnos();
+      muestraClientes();
     }
   } catch (e) {
     muestraError(e);

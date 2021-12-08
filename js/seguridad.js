@@ -1,19 +1,19 @@
 import { getAuth,
   getFirestore
-} from "../lib/fabrica.js";
+} from "../lib/bdFirebase.js";
 import {
   muestraError
-} from "../lib/util.js";
+} from "../lib/errorConsol.js";
 
 const firestore = getFirestore();
-const daoUsuario = firestore.
-  collection("Usuario");
+const daoGeneral = firestore.
+  collection("General");
 
-export async function iniciaSesión() {
+export async function sesionOn() {
   /** Tipo de autenticación de
    * usuarios. En este caso es con
    * Google.
-   * @type {import("../lib/tiposFire.js").GoogleAuthProvider} */
+   * @type {import("../lib/datosFire.js").GoogleAuthProvider} */
   const provider =
     // @ts-ignore
     new firebase.auth.
@@ -27,16 +27,16 @@ export async function iniciaSesión() {
     signInWithRedirect(provider);
 }
 /** @param {import(
-    "../lib/tiposFire.js").User}
-    usuario
+    "../lib/datosFire.js").User}
+    general
  * @param {string[]} roles
  * @returns {Promise<boolean>} */
 export async function
-  tieneRol(usuario, roles) {
-  if (usuario && usuario.email) {
+  tieneRol(general, roles) {
+  if (general && general.email) {
     const rolIds =
       await cargaRoles(
-        usuario.email);
+        general.email);
     for (const rol of roles) {
       if (rolIds.has(rol)) {
         return true;
@@ -45,13 +45,13 @@ export async function
     alert("No autorizado.");
     location.href = "index.html";
   } else {
-    iniciaSesión();
+    sesionOn();
   }
   return false;
 }
 
 export async function
-  terminaSesión() {
+  sesionOff() {
   try {
     await getAuth().signOut();
   } catch (e) {
@@ -65,14 +65,14 @@ export async function
 export async function
   cargaRoles(email) {
   let doc =
-    await daoUsuario.
+    await daoGeneral.
       doc(email).
       get();
   if (doc.exists) {
     /**
      * @type {
         import("./tipos.js").
-        Usuario} */
+        General} */
     const data = doc.data();
     return new Set(
       data.rolIds || []);

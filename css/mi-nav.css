@@ -1,7 +1,7 @@
 mi-nav {
   display: block;
   background-color:
-    var(--colorMiNav);
+    var(--colorNav);
 }
 
 mi-nav ul {

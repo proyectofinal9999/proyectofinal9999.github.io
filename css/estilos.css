@@ -5,8 +5,8 @@
 :root {
   font-family: sans-serif;
   --col-active: #4646462c;
-  --color-header: white;
-  --colorMiNav: white;
+  --color-header: #fcfdb1;
+  --colorNav: #fcfdb1;
 }
 
 body {
@@ -23,7 +23,7 @@ header {
     var(--color-header);
 }
 
-.herramientas {
+.materiales {
   display: flex;
   flex-flow: wrap;
   align-items: center;
@@ -40,6 +40,9 @@ header input {
 
 h1 {
   margin: 0.5rem 0;
+  border: thick groove mediumseagreen;
+  border-radius: 60px;
+
 }
 
 figure img {
@@ -50,7 +53,7 @@ legend,
 p label {
   display: block;
   font-weight: bold;
-  font-size: 0.7rem;
+  font-size: 1.2rem;
 }
 
 p label>* {

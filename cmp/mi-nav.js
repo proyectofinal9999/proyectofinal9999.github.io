@@ -3,38 +3,38 @@ import {
 } from "../js/seguridad.js";
 import {
   getAuth
-} from "../lib/fabrica.js";
+} from "../lib/bdFirebase.js";
 import {
   muestraError
-} from "../lib/util.js";
+} from "../lib/errorConsol.js";
 
-class MiNav extends HTMLElement {
+class Nav extends HTMLElement {
   connectedCallback() {
     this.innerHTML = /* html */
       `<ul>
         <li>
           <a href="index.html">
-            Sesión</a>
+            Inicio de Sesión</a>
         </li>
       </ul>`;
     this.ul =
       this.querySelector("ul");
     getAuth().onAuthStateChanged(
-      usuario => this.
-        cambiaUsuario(usuario),
+      general => this.
+        cambiaGeneral(general),
       muestraError);
   }
 
   /**
    * @param {import(
-      "../lib/tiposFire.js").User}
-      usu */
-  async cambiaUsuario(usu) {
-    if (usu && usu.email) {
+      "../lib/datosFire.js").User}
+      gen */
+  async cambiaGeneral(gen) {
+    if (gen && gen.email) {
       let html = "";
       const roles =
         await cargaRoles(
-          usu.email);
+          gen.email);
      if (roles.has("Cliente")) {
         html += /* html */
           `<li>
@@ -47,7 +47,7 @@ class MiNav extends HTMLElement {
         html += /* html */
           `<li>
             <a href=
-"alumnos.html">Alumnos</a>
+"clientes.html">Clientes</a>
           </li>`;
       }
       this.ul.innerHTML += html;
@@ -55,5 +55,4 @@ class MiNav extends HTMLElement {
   }
 }
 
-customElements.define(
-  "mi-nav", MiNav);
+customElements.define("mi-nav", Nav);

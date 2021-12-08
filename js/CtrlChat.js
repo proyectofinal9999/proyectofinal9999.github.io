@@ -1,19 +1,19 @@
 import {
   getAuth,
   getFirestore
-} from "../lib/fabrica.js";
+} from "../lib/bdFirebase.js";
 import {
   cod,
   getString,
   muestraError
-} from "../lib/util.js";
+} from "../lib/errorConsol.js";
 import {
   tieneRol
 } from "./seguridad.js";
 
 const daoMensaje = getFirestore().
   collection("Mensaje");
-let usuarioId = "";
+let idGeneral = "";
 /** @type {HTMLFormElement} */
 const forma = document["forma"];
 /** @type {HTMLUListElement} */
@@ -24,12 +24,12 @@ getAuth().onAuthStateChanged(
   protege, muestraError);
 
 /** @param {import(
-    "../lib/tiposFire.js").User}
-    usuario */
-async function protege(usuario) {
-  if (tieneRol(usuario,
+    "../lib/datosFire.js").User}
+    general */
+async function protege(general) {
+  if (tieneRol(general,
     ["Cliente"])) {
-    usuarioId = usuario.email;
+    idGeneral = general.email;
     consulta();
     forma.addEventListener(
       "submit", agrega);
@@ -55,7 +55,7 @@ async function agrega(evt) {
     /** @type {import(
         "./tipos.js").Mensaje} */
     const modelo = {
-      usuarioId,
+      idGeneral,
       texto,
       timestamp
     };
@@ -95,7 +95,7 @@ function consulta() {
  * esta función y recibe los datos
  * actualizados.
  * @param {import(
-    "../lib/tiposFire.js").
+    "../lib/datosFire.js").
     QuerySnapshot} snap estructura
  *    parecida a un Array, que
  *    contiene una copia de los
@@ -122,8 +122,7 @@ function htmlLista(snap) {
      * agrega un texto HTML. */
     html += /* html */
       `<li class="vacio">
-        -- No hay mensajes
-        registrados. --
+        No hay mensajes registrados. 
       </li>`;
   }
   lista.innerHTML = html;
@@ -133,7 +132,7 @@ function htmlLista(snap) {
  * que corresponde a un
  * documento de un mensaje.
  * @param {import(
-    "../lib/tiposFire.js").
+    "../lib/datosFire.js").
     DocumentSnapshot} doc */
 function htmlFila(doc) {
   /** Recupera los datos del
@@ -148,7 +147,7 @@ function htmlFila(doc) {
   return ( /* html */
     `<li class="fila">
       <strong class="primario">
-        ${cod(data.usuarioId)}
+        ${cod(data.idGeneral)}
       </strong>
       <span class="secundario">
         ${cod(data.texto)}

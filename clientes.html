@@ -5,15 +5,13 @@
   <meta name="viewport"
     content="width=device-width,
        initial-scale=1.0">
-  <title>Alumnos</title>
-  <script
-    src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js">
+
+  <title>Clientes</title>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js">
     </script>
-  <script
-    src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js">
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js">
     </script>
-  <script
-    src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js">
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js">
     </script>
   <script src="js/init.js">
   </script>
@@ -29,14 +27,15 @@
   <link rel="stylesheet"
     href="css/estilos.css">
 </head>
+
 <body>
   <mi-nav></mi-nav>
   <header>
-    <h1>Alumnos</h1>
-    <div class="herramientas">
+    <h1>Clientes</h1>
+    <div class="materiales">
       <a
-        href="alumnoNuevo.html">
-        Agregar…</a>
+        href="nuevoCliente.html">
+        Agregar nuevo cliente</a>
     </div>
   </header>
   <ul id="lista" class="lista">
@@ -45,9 +44,10 @@
       </mi-progreso>
     </li>
   </ul>
+
   <mi-footer></mi-footer>
   <script type="module"
-    src="js/CtrlAlumnos.js">
+    src="js/CtrlClientes.js">
     </script>
 </body>
 </html>

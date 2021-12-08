@@ -1,11 +1,11 @@
 import {
   getAuth,
   getFirestore
-} from "../lib/fabrica.js";
+} from "../lib/bdFirebase.js";
 import {
   cod,
   muestraError
-} from "../lib/util.js";
+} from "../lib/errorConsol.js";
 import {
   tieneRol
 } from "./seguridad.js";
@@ -13,26 +13,26 @@ import {
 /** @type {HTMLUListElement} */
 const lista = document.
   querySelector("#lista");
-const daoAlumno =
+const daoCliente =
   getFirestore().
-    collection("Alumno");
+    collection("Cliente");
 
 getAuth().
   onAuthStateChanged(
     protege, muestraError);
 
 /** @param {import(
-    "../lib/tiposFire.js").User}
-    usuario */
-async function protege(usuario) {
-  if (tieneRol(usuario,
+    "../lib/datosFire.js").User}
+    general */
+async function protege(general) {
+  if (tieneRol(general,
     ["Administrador"])) {
     consulta();
   }
 }
 
 function consulta() {
-  daoAlumno.
+  daoCliente.
     orderBy("nombre")
     .onSnapshot(
       htmlLista, errConsulta);
@@ -40,7 +40,7 @@ function consulta() {
 
 /**
  * @param {import(
-    "../lib/tiposFire.js").
+    "../lib/datosFire.js").
     QuerySnapshot} snap */
 function htmlLista(snap) {
   let html = "";
@@ -50,8 +50,7 @@ function htmlLista(snap) {
   } else {
     html += /* html */
       `<li class="vacio">
-        -- No hay alumnos
-        registrados. --
+        No hay clientes registrados. 
       </li>`;
   }
   lista.innerHTML = html;
@@ -59,15 +58,15 @@ function htmlLista(snap) {
 
 /**
  * @param {import(
-    "../lib/tiposFire.js").
+    "../lib/datosFire.js").
     DocumentSnapshot} doc */
 function htmlFila(doc) {
   /**
    * @type {import("./tipos.js").
-                  Alumno} */
+                  Cliente} */
   const data = doc.data();
-  const matricula = cod(data.matricula);
   const nombre = cod(data.nombre);
+  const modcel = cod(data.modcel);
   var fsf= cod(data.fecha);
   var fecha = new Date(fsf);
   var espacio="[   -   ]";
@@ -78,9 +77,9 @@ function htmlFila(doc) {
   return ( /* html */
     `<li>
       <a class="fila" href=
-  "alumno.html?${parámetros}">
+  "cliente.html?${parámetros}">
         <strong class="primario">
-          ${matricula} ${nombre} ${dformat}
+          ${nombre} ${modcel} ${dformat}
         </strong>
       </a>
      
