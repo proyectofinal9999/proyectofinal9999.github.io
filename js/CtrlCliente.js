@@ -81,7 +81,7 @@ async function guarda(evt) {
 
 async function elimina() {
   try {
-    if (confirm("Confirmar la " + "eliminación")) {
+    if (confirm("¿Está seguro de" + "eliminar?")) {
       await daoCliente.doc(id).delete();
       muestraClientes();
     }

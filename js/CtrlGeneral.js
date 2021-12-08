@@ -62,7 +62,7 @@ import {
   
   async function elimina() {
     try {
-      if (confirm("Confirmar la " + "eliminación")) {
+      if (confirm("¿Esta seguro de" + "eliminar?")) {
         await daoGeneral.doc(id).delete();
         await eliminaStorage(id);
         muestraGenerales();
