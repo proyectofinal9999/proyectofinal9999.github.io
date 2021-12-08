@@ -18,22 +18,14 @@
   </style>
 
 
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js">
-    </script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js">
-    </script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js">
-    </script>
-  <script src="js/init.js">
-  </script>
-  <script type="module"
-    src="cmp/mi-nav.js">
-    </script>
-  <script type="module"
-    src="cmp/mi-footer.js">
-    </script>
-  <link rel="stylesheet"
-    href="css/estilos.css">
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="js/init.js"></script>
+  <script type="module" src="cmp/mi-nav.js"></script>
+  <script type="module" src="cmp/mi-footer.js"></script>
+
+  <link rel="stylesheet" href="css/estilos.css">
 </head>
 
 <body>
@@ -42,56 +34,30 @@
     <header>
       <h1>Cliente</h1>
       <div class="materiales" style="position: relative;top: 780%;right: 30%;">
-        <a href="clientes.html">
-          Cancelar</a>
+        <a href="clientes.html"> Cancelar</a>
         <button>Guardar</button>
-        <button name="eliminar"
-          type="button">
-          Eliminar
-        </button>
+        <button name="eliminar" type="button"> Eliminar </button>
       </div>
-      <mi-progreso>
-      </mi-progreso>
+      <mi-progreso></mi-progreso>
     </header>
     <p>
-      <label>
-        Nombre
-        <input name="nombre"
-          type="text" required>
-      </label>
+      <label> Nombre <input name="nombre" type="text" required></label>
     </p>
     <p>
-      <label>
-        Modelo de Celular
-        <input name="modcel"
-          type="text" required>
-      </label>
+      <label> Modelo de Celular <input name="modcel" type="text" required></label>
     </p>
     <p>
-      <label>
-        Teléfono
-        <input name="telefono"
-          type="text" required>
-      </label>
+      <label> Teléfono <input name="telefono" type="text" required></label>
     </p>
     <p>
-      <label>
-        Tipo de funda
-        <input name="tipo"
-          type="text" required>
-      </label>
+      <label> Tipo de funda <input name="tipo" type="text" required></label>
     </p>
     <p>
-      <label>
-        Fecha
-        <input name="fecha" type="date" required>
-      </label>
+      <label> Fecha <input name="fecha" type="date" required></label>
     </p>
     <mi-footer></mi-footer>
   </form>
-  <script type="module"
-    src="js/CtrlCliente.js">
-    </script>
+  <script type="module" src="js/CtrlCliente.js"></script>
 </body>
 </html>
 

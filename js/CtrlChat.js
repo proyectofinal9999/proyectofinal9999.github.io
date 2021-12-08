@@ -1,11 +1,8 @@
 import {
-  getAuth,
-  getFirestore
+  getAuth, getFirestore
 } from "../lib/bdFirebase.js";
 import {
-  cod,
-  getString,
-  muestraError
+  cod, getString, muestraError
 } from "../lib/errorConsol.js";
 import {
   tieneRol
@@ -20,48 +17,37 @@ const forma = document["forma"];
 const lista = document.
   querySelector("#lista");
 
-getAuth().onAuthStateChanged(
-  protege, muestraError);
+getAuth().onAuthStateChanged(protege, muestraError);
 
 /** @param {import(
     "../lib/datosFire.js").User}
     general */
 async function protege(general) {
-  if (tieneRol(general,
-    ["Cliente"])) {
+  if (tieneRol(general,["Cliente"])) {
     idGeneral = general.email;
     consulta();
-    forma.addEventListener(
-      "submit", agrega);
+    forma.addEventListener("submit", agrega);
   }
 }
 
-/** Agrega un usuario a la base de
- * datos.
+/** 
  * @param {Event} evt */
 async function agrega(evt) {
   try {
     evt.preventDefault();
-    const formData =
-      new FormData(forma);
+    const formData = new FormData(forma);
     /** @type {string} */
-    const texto = getString(
-      formData, "texto").trim();
+    const texto = getString(formData, "texto").trim();
     const timestamp =
       // @ts-ignore
-      firebase.firestore.
-        FieldValue.
-        serverTimestamp();
+      firebase.firestore.FieldValue.serverTimestamp();
     /** @type {import(
         "./tipos.js").Mensaje} */
     const modelo = {
-      idGeneral,
-      texto,
-      timestamp
+      idGeneral, texto, timestamp
     };
-    /* El modelo se agrega a
-     * la colección
-     * "Mensaje". */
+
+    /*"Mensaje". */
     await daoMensaje.add(modelo);
     forma.texto.value = "";
   } catch (e) {
@@ -69,57 +55,23 @@ async function agrega(evt) {
   }
 }
 
-/** Muestra los mensajes
- * almacenados en la collection
- * "Mensaje". Se actualiza
- * automáticamente. */
 function consulta() {
-  /* Consulta que se actualiza
-   * automáticamente. Pide todos
-   * los registros de la colección
-   *  "Mensaje"
-   * ordenados por el campo
-   *  "timestamp"
-   * de forma
-   *  descendente. */
   daoMensaje.
     orderBy("timestamp", "desc").
-    onSnapshot(
-      htmlLista, errConsulta);
+    onSnapshot(htmlLista, errConsulta);
 }
 
-/** Muestra los datos enviados por
- * el servidor.
- * Si los datos cambian en el
- * servidor, se vuelve a invocar
- * esta función y recibe los datos
- * actualizados.
+/** 
  * @param {import(
     "../lib/datosFire.js").
-    QuerySnapshot} snap estructura
- *    parecida a un Array, que
- *    contiene una copia de los
- *    datos del servidor.
+    QuerySnapshot} snap 
  */
 function htmlLista(snap) {
   let html = "";
   if (snap.size > 0) {
-    /* Cuando el número de
-     * documentos devueltos por la
-     * consulta es mayor que 0,
-     * revisa uno por uno los
-     * documentos de la consulta y
-     * los muestra. El iterador
-     * "doc" apunta a un
-     * documento de la base
-     * de datos. */
     snap.forEach(doc =>
       html += htmlFila(doc));
   } else {
-    /* Cuando el número de
-     * documentos devueltos por la
-     * consulta es igual a 0,
-     * agrega un texto HTML. */
     html += /* html */
       `<li class="vacio">
         No hay mensajes registrados. 
@@ -128,22 +80,15 @@ function htmlLista(snap) {
   lista.innerHTML = html;
 }
 
-/** Agrega el texto HTML
- * que corresponde a un
- * documento de un mensaje.
+/** 
  * @param {import(
     "../lib/datosFire.js").
     DocumentSnapshot} doc */
 function htmlFila(doc) {
-  /** Recupera los datos del
-   * documento.
+  /**
    * @type {import("./tipos.js").
                       Mensaje} */
   const data = doc.data();
-  /* Agrega un li con los datos
-   * del documento, los cuales se
-   * codifican para evitar
-   * inyección de código. */
   return ( /* html */
     `<li class="fila">
       <strong class="primario">
@@ -155,16 +100,9 @@ function htmlFila(doc) {
     </li>`);
 }
 
-/** Función que se invoca cuando
- * hay un error al recuperar los
- * mensajes y muestra el error. Al
- * invocar esta función, la
- * conexión se cancela, por lo
- * cual intenta conectarse otra
- * vez.
+/**
  * @param {Error} e */
 function errConsulta(e) {
   muestraError(e);
-  // Intenta conectarse otra vez.
   consulta();
 }

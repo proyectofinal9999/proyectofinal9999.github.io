@@ -19,29 +19,16 @@
   </style>
 
 
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js">
-    </script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js">
-    </script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js">
-    </script>
-  <!-- Agrega el manejo de storage. -->
-  <script
-    src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js">
-    </script>
-  <script src="js/init.js">
-  </script>
-  <script type="module"
-    src="cmp/mi-nav.js">
-    </script>
-  <script type="module"
-    src="cmp/mi-footer.js">
-    </script>
-  <script type="module"
-    src="cmp/mi-progreso.js">
-    </script>
-  <link rel="stylesheet"
-    href="css/estilos.css">
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+  <script src="js/init.js"></script>
+  <script type="module" src="cmp/mi-nav.js"></script>
+  <script type="module" src="cmp/mi-footer.js"></script>
+  <script type="module" src="cmp/mi-progreso.js"></script>
+
+  <link rel="stylesheet" href="css/estilos.css">
 </head>
 
 <body>
@@ -49,20 +36,16 @@
   <header>
     <h1>Usuarios Generales</h1>
     <div class="materiales" style="position: relative;right: 50%;">
-      <a href="nuevoGeneral.html">
-        Agregar</a>
+      <a href="nuevoGeneral.html"> Agregar</a>
     </div>
   </header>
   <ul id="lista" class="lista">
     <li>
-      <mi-progreso>
-      </mi-progreso>
+      <mi-progreso></mi-progreso>
     </li>
   </ul>
 
   <mi-footer></mi-footer>
-  <script type="module"
-    src="js/CtrlGenerales.js">
-    </script>
+  <script type="module" src="js/CtrlGenerales.js"></script>
 </body>
 </html>

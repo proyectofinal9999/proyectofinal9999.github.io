@@ -8,5 +8,4 @@ class Progreso
   }
 }
 
-customElements.define(
-  "mi-progreso", Progreso);
+customElements.define("mi-progreso", Progreso);

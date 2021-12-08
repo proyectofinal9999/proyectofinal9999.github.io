@@ -1,13 +1,11 @@
 import {
-    getAuth,
-    getFirestore
+    getAuth, getFirestore
   } from "../lib/bdFirebase.js";
   import {
     urlStorage
   } from "../lib/storage.js";
   import {
-    cod,
-    muestraError
+    cod, muestraError
   } from "../lib/errorConsol.js";
   import {
     tieneRol
@@ -15,32 +13,25 @@ import {
   
   /** @type {HTMLUListElement} */
   // @ts-ignore
-  const lista = document.
-    querySelector("#lista");
+  const lista = document.querySelector("#lista");
   const firestore = getFirestore();
-  const daoRol = firestore.
-    collection("Rol");
-  const daoCliente = firestore.
-    collection("Cliente");
-  const daoGeneral = firestore.
-    collection("General");
+  const daoRol = firestore.collection("Rol");
+  const daoCliente = firestore.collection("Cliente");
+  const daoGeneral = firestore.collection("General");
   
-  getAuth().onAuthStateChanged(
-    protege, muestraError);
+  getAuth().onAuthStateChanged(protege, muestraError);
   
   /** @param {import(
       "../lib/datosFire.js").User}
       general */
   async function protege(general) {
-    if (tieneRol(general,
-      ["Administrador"])) {
+    if (tieneRol(general, ["Administrador"])) {
       consulta();
     }
   }
   
   function consulta() {
-    daoGeneral.onSnapshot(
-      htmlLista, errConsulta);
+    daoGeneral.onSnapshot(htmlLista, errConsulta);
   }
   
   /**
@@ -53,19 +44,13 @@ import {
       /** @type {
             Promise<string>[]} */
       let generales = [];
-      snap.forEach(doc => generales.
-        push(htmlFila(doc)));
-      const htmlFilas =
-        await Promise.all(generales);
-      /* Junta el todos los
-       * elementos del arreglo en
-       * una cadena. */
+      snap.forEach(doc => generales.push(htmlFila(doc)));
+      const htmlFilas = await Promise.all(generales);
+
       html += htmlFilas.join("");
     } else {
       html += /* html */
-        `<li class="vacio">
-          No hay usuarios generales registrados.
-        </li>`;
+        `<li class="vacio"> No hay usuarios generales registrados. </li>`;
     }
     lista.innerHTML = html;
   }
@@ -79,32 +64,22 @@ import {
      * @type {import("./tipos.js").
                         General} */
     const data = doc.data();
-    const img = cod(
-      await urlStorage(doc.id));
-    const cliente =
-      await buscaCliente(
-        data.idCliente);
-    const roles =
-      await buscaRoles(data.rolIds);
-    const parámetros =
-      new URLSearchParams();
+    const img = cod(await urlStorage(doc.id));
+    const cliente = await buscaCliente(data.idCliente);
+    const roles = await buscaRoles(data.rolIds);
+    const parámetros = new URLSearchParams();
     parámetros.append("id", doc.id);
     return (/* html */
       `<li>
-        <a class="fila conImagen"
-            href=
-      "general.html?${parámetros}">
+        <a class="fila conImagen" href="general.html?${parámetros}">
           <span class="marco">
-            <img src="${img}"
-              alt="Falta el Avatar">
+            <img src="${img}" alt="Falta el Avatar">
           </span>
           <span class="texto">
-            <strong
-                class="primario">
+            <strong class="primario">
               ${cod(doc.id)}
             </strong>
-            <span
-                class="secundario">
+            <span class="secundario">
               ${cliente}<br>
               ${roles}
             </span>
@@ -113,16 +88,12 @@ import {
       </li>`);
   }
   
-  /** Recupera el html de un
-   * alumno en base a su id.
+  /**
    * @param {string} id */
   async function
     buscaCliente(id) {
     if (id) {
-      const doc =
-        await daoCliente.
-          doc(id).
-          get();
+      const doc = await daoCliente.doc(id).get();
       if (doc.exists) {
         /**
          * @type {import(
@@ -136,16 +107,13 @@ import {
     return " ";
   }
   
-  /** Recupera el html de los
-   * roles en base a sus id
+  /**
    * @param {string[]} ids */
   async function buscaRoles(ids) {
     let html = "";
     if (ids && ids.length > 0) {
       for (const id of ids) {
-        const doc = await daoRol.
-          doc(id).
-          get();
+        const doc = await daoRol.doc(id).get();
         /**
          * @type {
         import("./tipos.js").Rol} */

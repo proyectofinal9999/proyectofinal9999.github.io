@@ -12,40 +12,27 @@ import {
 } from "./navegacion.js";
 
 const NO_CLIENTES = /* html */
-  `<option value="">
-    Sin Clientes
-  </option>`;
+  `<option value=""> Sin Clientes </option>`;
 
 const firestore = getFirestore();
-const daoRol = firestore.
-  collection("Rol");
-const daoCliente = firestore.
-  collection("Cliente");
-const daoGeneral = firestore.
-  collection("General");
+const daoRol = firestore.collection("Rol");
+const daoCliente = firestore.collection("Cliente");
+const daoGeneral = firestore.collection("General");
 
 /**
  * @param {
     HTMLSelectElement} select
  * @param {string} valor */
-export function
-  selectClientes(select,
-    valor) {
+export function selectClientes(select, valor) {
   valor = valor || "";
-  daoCliente.
-    orderBy("nombre").
-    onSnapshot(
-      snap => {
+  daoCliente.orderBy("nombre").onSnapshot(snap => {
         let html = NO_CLIENTES;
-        snap.forEach(doc =>
-          html += htmlCliente(
-            doc, valor));
+        snap.forEach(doc => html += htmlCliente(doc, valor));
         select.innerHTML = html;
       },
       e => {
         muestraError(e);
-        selectClientes(
-          select, valor);
+        selectClientes(select, valor);
       }
     );
 }
@@ -55,18 +42,14 @@ export function
   import("../lib/datosFire.js").
   DocumentSnapshot} doc
  * @param {string} valor */
-function
-  htmlCliente(doc, valor) {
-  const selected =
-    doc.id === valor ?
-      "selected" : "";
+function htmlCliente(doc, valor) {
+  const selected = doc.id === valor ? "selected" : "";
   /**
    * @type {import("./tipos.js").
                   Cliente} */
   const data = doc.data();
   return (/* html */
-    `<option
-        value="${cod(doc.id)}"
+    `<option value="${cod(doc.id)}"
         ${selected}>
       ${cod(data.nombre)}
     </option>`);
@@ -75,30 +58,21 @@ function
 /**
  * @param {HTMLElement} elemento
  * @param {string[]} valor */
-export function
-  checksRoles(elemento, valor) {
-  const set =
-    new Set(valor || []);
-  daoRol.onSnapshot(
-    snap => {
+export function checksRoles(elemento, valor) {
+  const set = new Set(valor || []);
+  daoRol.onSnapshot(snap => {
       let html = "";
       if (snap.size > 0) {
-        snap.forEach(doc =>
-          html +=
-          checkRol(doc, set));
+        snap.forEach(doc => html += checkRol(doc, set));
       } else {
         html += /* html */
-          `<li class="vacio">
-              No hay roles
-              registrados.
-            </li>`;
+          `<li class="vacio"> No hay roles registrados. </li>`;
       }
       elemento.innerHTML = html;
     },
     e => {
       muestraError(e);
-      checksRoles(
-        elemento, valor);
+      checksRoles(elemento, valor);
     }
   );
 }
@@ -114,24 +88,15 @@ export function
    * @type {
       import("./tipos.js").Rol} */
   const data = doc.data();
-  const checked =
-    set.has(doc.id) ?
-      "checked" : "";
+  const checked = set.has(doc.id) ? "checked" : "";
   return (/* html */
     `<li>
       <label class="fila">
-        <input type="checkbox"
-            name="rolIds"
-            value="${cod(doc.id)}"
-          ${checked}>
+        <input type="checkbox" name="rolIds" value="${cod(doc.id)}" ${checked}>
         <span class="texto">
-          <strong
-              class="primario">
-            ${cod(doc.id)}
+          <strong class="primario"> ${cod(doc.id)}
           </strong>
-          <span
-              class="secundario">
-          ${cod(data.descripción)}
+          <span class="secundario"> ${cod(data.descripción)}
           </span>
         </span>
       </label>
@@ -142,24 +107,14 @@ export function
  * @param {Event} evt
  * @param {FormData} formData
  * @param {string} id  */
-export async function
-  guardaGeneral(evt, formData,
-    id) {
+export async function guardaGeneral(evt, formData, id) {
   try {
     evt.preventDefault();
-    const idCliente =
-      getForánea(formData,
-        "idCliente");
-    const rolIds =
-      formData.getAll("rolIds");
-    await daoGeneral.
-      doc(id).
-      set({
-        idCliente,
-        rolIds
-      });
-    const avatar =
-      formData.get("avatar");
+    const idCliente = getForánea(formData, "idCliente");
+    const rolIds = formData.getAll("rolIds");
+    await daoGeneral.doc(id).set({
+        idCliente, rolIds});
+    const avatar = formData.get("avatar");
     await subeStorage(id, avatar);
     muestraGenerales();
   } catch (e) {

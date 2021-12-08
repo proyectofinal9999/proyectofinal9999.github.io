@@ -17,25 +17,15 @@
     }
   </style>
 
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js">
-    </script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js">
-    </script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js">
-    </script>
-  <script src="js/init.js">
-  </script>
-  <script type="module"
-    src="cmp/mi-nav.js">
-    </script>
-  <script type="module"
-    src="cmp/mi-footer.js">
-    </script>
-  <script type="module"
-    src="cmp/mi-progreso.js">
-    </script>
-  <link rel="stylesheet"
-    href="css/estilos.css">
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="js/init.js"></script>
+  <script type="module" src="cmp/mi-nav.js"></script>
+  <script type="module" src="cmp/mi-footer.js"></script>
+  <script type="module" src="cmp/mi-progreso.js"></script>
+
+  <link rel="stylesheet" href="css/estilos.css">
 </head>
 
 <body>
@@ -43,22 +33,17 @@
   <header>
     <h1>Clientes</h1>
     <div class="materiales" style="position: relative;right: 40%;">
-      <a
-        href="nuevoCliente.html">
-        Agregar nuevo cliente</a>
+      <a href="nuevoCliente.html"> Agregar nuevo cliente</a>
     </div>
   </header>
   <ul id="lista" class="lista">
     <li>
-      <mi-progreso>
-      </mi-progreso>
+      <mi-progreso></mi-progreso>
     </li>
   </ul>
 
   <mi-footer></mi-footer>
-  <script type="module"
-    src="js/CtrlClientes.js">
-    </script>
+  <script type="module" src="js/CtrlClientes.js"></script>
 </body>
 </html>
 

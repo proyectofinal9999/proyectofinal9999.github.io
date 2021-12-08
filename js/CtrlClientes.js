@@ -1,41 +1,30 @@
 import {
-  getAuth,
-  getFirestore
+  getAuth, getFirestore
 } from "../lib/bdFirebase.js";
 import {
-  cod,
-  muestraError
+  cod, muestraError
 } from "../lib/errorConsol.js";
 import {
   tieneRol
 } from "./seguridad.js";
 
 /** @type {HTMLUListElement} */
-const lista = document.
-  querySelector("#lista");
-const daoCliente =
-  getFirestore().
-    collection("Cliente");
+const lista = document.querySelector("#lista");
+const daoCliente = getFirestore().collection("Cliente");
 
-getAuth().
-  onAuthStateChanged(
-    protege, muestraError);
+getAuth().onAuthStateChanged(protege, muestraError);
 
 /** @param {import(
     "../lib/datosFire.js").User}
     general */
 async function protege(general) {
-  if (tieneRol(general,
-    ["Administrador"])) {
+  if (tieneRol(general,["Administrador"])) {
     consulta();
   }
 }
 
 function consulta() {
-  daoCliente.
-    orderBy("nombre")
-    .onSnapshot(
-      htmlLista, errConsulta);
+  daoCliente.orderBy("nombre").onSnapshot(htmlLista, errConsulta);
 }
 
 /**
@@ -45,13 +34,10 @@ function consulta() {
 function htmlLista(snap) {
   let html = "";
   if (snap.size > 0) {
-    snap.forEach(doc =>
-      html += htmlFila(doc));
+    snap.forEach(doc => html += htmlFila(doc));
   } else {
     html += /* html */
-      `<li class="vacio">
-        No hay clientes registrados. 
-      </li>`;
+      `<li class="vacio"> No hay clientes registrados. </li>`;
   }
   lista.innerHTML = html;
 }
@@ -71,18 +57,15 @@ function htmlFila(doc) {
   var fecha = new Date(fsf);
   var espacio="[   -   ]";
   var dformat = [fecha.getDate()+1, fecha.getMonth()+1, fecha.getFullYear()].join('/');
-  const parámetros =
-    new URLSearchParams();
+  const parámetros = new URLSearchParams();
   parámetros.append("id", doc.id);
   return ( /* html */
     `<li>
-      <a class="fila" href=
-  "cliente.html?${parámetros}">
+      <a class="fila" href="cliente.html?${parámetros}">
         <strong class="primario">
           ${nombre} ${modcel} ${dformat}
         </strong>
       </a>
-     
     </li>`);
 }
 
